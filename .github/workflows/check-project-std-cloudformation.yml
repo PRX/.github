@@ -1,0 +1,19 @@
+name: Check CloudFormation files
+
+on: workflow_call
+
+jobs:
+  check-cloudformation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: pip
+      - name: cfn-lint
+        run: |
+          test -f requirements.txt \
+          && grep --quiet "cfn-lint" requirements.txt \
+          && pip install -r requirements.txt \
+          && find . -name "*.yml" -type f ! -path "*/node_modules/*" ! -path "./vendor/bundle/*" ! -path "./.github/*" -mindepth 2 -print0 | xargs -0 -n1 cfn-lint --ignore-checks E3008 --template
