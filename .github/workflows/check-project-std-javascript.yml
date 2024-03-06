@@ -15,5 +15,5 @@ jobs:
           test -f yarn.lock \
           && yarn install \
           && npm exec prettier -- --check "**/*.{json,yml}" \
-          && npm exec eslint -- "**/*.js" \
+          && npm exec eslint -- "**/*.{js,mjs}" \
           && npm exec tsc
