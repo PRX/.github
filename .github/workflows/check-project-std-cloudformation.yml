@@ -16,4 +16,5 @@ jobs:
           test -f requirements.txt \
           && grep --quiet "cfn-lint" requirements.txt \
           && pip install -r requirements.txt \
-          && find . -name "*.yml" -type f ! -path "*/node_modules/*" ! -path "./vendor/bundle/*" ! -path "./.github/*" -mindepth 2 -print0 | xargs -0 -n1 cfn-lint --ignore-checks E3008 --template
+          && find . -name "template.yml" -type f -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n1 -r cfn-lint --ignore-checks E3008 --template \
+          && find . -name "*.yml" -type f ! -path "*/node_modules/*" ! -path "./vendor/bundle/*" ! -path "./.github/*" -mindepth 2 -print0 | xargs -0 -n1 -r cfn-lint --ignore-checks E3008 --template
