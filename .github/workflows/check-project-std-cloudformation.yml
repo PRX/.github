@@ -12,9 +12,12 @@ jobs:
           python-version: "3.10"
           cache: pip
       - name: cfn-lint
+        # E3008: Validate an array in order
+        # W2531: Check if EOL Lambda Function Runtimes are used
+        # W1011: Instead of REFing a parameter for a secret use a dynamic reference
         run: |
           test -f requirements.txt \
           && grep --quiet "cfn-lint" requirements.txt \
           && pip install -r requirements.txt \
-          && find . -name "template.yml" -type f -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n1 -r cfn-lint --ignore-checks E3008 W4002 W2531 --template \
+          && find . -name "template.yml" -type f -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n1 -r cfn-lint --ignore-checks E3008 W2531 W1011 --template \
           && find . -name "*.yml" -type f ! -path "*/node_modules/*" ! -path "./vendor/bundle/*" ! -path "./.github/*" -mindepth 2 -print0 | xargs -0 -n1 -r cfn-lint --ignore-checks E3008 W4002 W2531 --template
