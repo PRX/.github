@@ -11,3 +11,4 @@ jobs:
         with:
           bundler-cache: true
       - run: test -f Gemfile && bundle exec standardrb
+      - run: test -f .erb_lint.yml && bundle exec erb_lint --lint-all
