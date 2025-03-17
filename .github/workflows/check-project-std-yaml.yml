@@ -3,7 +3,7 @@ name: Check YAML files
 on: workflow_call
 
 jobs:
-  check-css:
+  check-yaml:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
