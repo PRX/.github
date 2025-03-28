@@ -12,6 +12,6 @@ jobs:
           node-version: 22
           cache: yarn
       - run: |
-          test -f yarn.lock \
+          yarn add prettier \
           && yarn install \
-          && npm exec prettier -- --check "**/*.{yaml,yml}" \
+          && npm exec prettier -- --check "**/*.{yaml,yml}"
