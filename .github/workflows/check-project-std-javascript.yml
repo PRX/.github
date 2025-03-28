@@ -18,7 +18,7 @@ jobs:
           fi
       # Lint with Biome if it looks like a Biome project
       - run: |
-          if test -f package.json && grep '"eslint":' package.json && test -f yarn.lock; \
+          if test -f package.json && grep '"@biomejs/biome' package.json && test -f yarn.lock; \
           then yarn install && npm exec biome -- check; \
           fi
       # Use TypeScript to check types if it looks like a TypeScript project
