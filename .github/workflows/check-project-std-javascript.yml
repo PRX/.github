@@ -11,21 +11,30 @@ jobs:
         with:
           node-version: 22
           cache: yarn
+      # Lint with ESLint if it looks like an ESLint project
       - run: |
-          test -f package.json \
-          && grep '"eslint":' package.json \
-          && test -f yarn.lock \
-          && yarn install \
-          && npm exec eslint -- "**/*.{js,mjs,ts}"
+          if \
+            test -f package.json \
+            && grep '"eslint":' package.json \
+            && test -f yarn.lock; \
+          then; \
+            yarn install && npm exec eslint -- "**/*.{js,mjs,ts}"; \
+          fi
+      # Lint with Biome if it looks like a Biome project
       - run: |
-          test -f package.json \
-          && grep '"typescript":' package.json \
-          && test -f yarn.lock \
-          && yarn install \
-          && npm exec tsc
+          if \
+            test -f package.json \
+            && grep '"@biomejs/biome' package.json \
+            && test -f yarn.lock; \
+          then; \
+            yarn install && npm exec biome -- check; \
+          fi
+      # Use TypeScript to check types if it looks like a TypeScript project
       - run: |
-          test -f package.json \
-          && grep '"@biomejs' package.json \
-          && test -f yarn.lock \
-          && yarn install \
-          && npm exec biome -- check
+          if \
+            test -f package.json \
+            && grep '"typescript":' package.json \
+            && test -f yarn.lock; \
+          then; \
+            yarn install && npm exec tsc; \
+          fi
