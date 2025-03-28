@@ -16,7 +16,7 @@ jobs:
           if \
             test -f package.json \
             && grep '"eslint":' package.json \
-            && test -f yarn.lock; \
+            && test -f yarn.lock \
           then; \
             yarn install && npm exec eslint -- "**/*.{js,mjs,ts}"; \
           fi
@@ -25,7 +25,7 @@ jobs:
           if \
             test -f package.json \
             && grep '"@biomejs/biome' package.json \
-            && test -f yarn.lock; \
+            && test -f yarn.lock \
           then; \
             yarn install && npm exec biome -- check; \
           fi
@@ -34,7 +34,7 @@ jobs:
           if \
             test -f package.json \
             && grep '"typescript":' package.json \
-            && test -f yarn.lock; \
+            && test -f yarn.lock \
           then; \
             yarn install && npm exec tsc; \
           fi

@@ -15,7 +15,7 @@ jobs:
           if \
             test -f package.json \
             && grep '"prettier":' package.json \
-            && test -f yarn.lock; \
+            && test -f yarn.lock \
           then; \
             yarn install && npm exec prettier -- --check "**/*.{css,scss}"; \
           fi
@@ -24,7 +24,7 @@ jobs:
           if \
             test -f package.json \
             && grep '"@biomejs/biome' package.json \
-            && test -f yarn.lock; \
+            && test -f yarn.lock \
           then; \
             yarn install && npm exec biome -- check; \
           fi
