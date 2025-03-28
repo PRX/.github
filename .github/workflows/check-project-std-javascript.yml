@@ -18,7 +18,7 @@ jobs:
             && grep '"eslint":' package.json \
             && test -f yarn.lock \
           then; \
-            yarn install && npm exec eslint -- "**/*.{js,mjs,ts}"; \
+            yarn install && npm exec eslint -- "**/*.{js,mjs,ts}" \
           fi
       # Lint with Biome if it looks like a Biome project
       - run: |
@@ -27,7 +27,7 @@ jobs:
             && grep '"@biomejs/biome' package.json \
             && test -f yarn.lock \
           then; \
-            yarn install && npm exec biome -- check; \
+            yarn install && npm exec biome -- check \
           fi
       # Use TypeScript to check types if it looks like a TypeScript project
       - run: |
@@ -36,5 +36,5 @@ jobs:
             && grep '"typescript":' package.json \
             && test -f yarn.lock \
           then; \
-            yarn install && npm exec tsc; \
+            yarn install && npm exec tsc \
           fi

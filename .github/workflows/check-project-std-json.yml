@@ -17,7 +17,7 @@ jobs:
             && grep '"prettier":' package.json \
             && test -f yarn.lock \
           then; \
-            yarn install && npm exec prettier -- --check "**/*.{json}"; \
+            yarn install && npm exec prettier -- --check "**/*.{json}" \
           fi
       # Lint with Biome if it looks like a Biome project
       - run: |
@@ -26,5 +26,5 @@ jobs:
             && grep '"@biomejs/biome' package.json \
             && test -f yarn.lock \
           then; \
-            yarn install && npm exec biome -- check; \
+            yarn install && npm exec biome -- check \
           fi
