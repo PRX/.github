@@ -13,7 +13,7 @@ jobs:
           cache: yarn
       - run: |
           if test -f package.json && grep '"prettier":' package.json && test -f yarn.lock; \
-          then yarn install && npm exec prettier -- --check "**/*.{json}"; \
+          then yarn install && npm exec prettier -- --check "**/*.json"; \
           fi
       # Lint with Biome if it looks like a Biome project
       - run: |
